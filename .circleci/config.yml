@@ -37,7 +37,7 @@ jobs:
             git config user.name "samuk-a"
       - add_ssh_keys:
           fingerprints:
-            - '0e:49:43:23:6c:37:61:48:97:f7:a1:76:e3:92:91:00'
+            - '6f:2c:fe:95:bf:22:21:98:fd:eb:70:c5:ec:a3:a3:5b'
 
       - run:
           name: Deploy to GitHub Pages
