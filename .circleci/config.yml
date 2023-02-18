@@ -1,7 +1,8 @@
 version: 2
 
 jobs:
-  ci:
+  build:
+    working_directory: ~/repo
     docker:
       - image: cimg/node:lts
     steps:
@@ -24,13 +25,31 @@ jobs:
           name: Run linter
           command: yarn lint
 
+      - run:
+          name: Build project
+          command: yarn generate:gh-pages
+
+      - run:
+          name: Install and configure ghpages dependencies
+          command: |
+              yarn add gh-pages -D
+              git config user.email "samuel.santiago@ufu.br"
+              git config user.name "samuk-a"
+
+      - add_ssh_keys:
+          fingerprints:
+            - "0e:49:43:23:6c:37:61:48:97:f7:a1:76:e3:92:91:00"
+
+      - run:
+          name: Deploy to GitHub Pages
+          command: './node_modules/.bin/gh-pages --dotfiles --message "[skip ci] Updates" -d dist'
+
 workflows:
   version: 2
   ci:
     jobs:
-      - ci:
+      - build:
           filters:
             branches:
               only:
-                - main
                 - master

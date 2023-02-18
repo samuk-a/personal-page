@@ -1,8 +1,12 @@
 import colors from 'vuetify/es5/util/colors'
 
+const routerBase = process.env.DEPLOY_ENV === "GITHUB_PAGES" ? { router: { base: "/" } } : {};
+
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
+
+  ...routerBase,
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
