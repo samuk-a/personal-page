@@ -57,7 +57,7 @@ jobs:
             git config user.email "${gitEmail}"
             git add .output/public
             git commit -m "Deploying public folder"
-            git ftp push master --syncroot .output/public/ --user "${username}" --passwd "${password}" ${ftp_location}
+            git ftp push --syncroot .output/public/ --user "${username}" --passwd "${password}" ${ftp_location}
 
 workflows:
   test-build-and-deploy:
