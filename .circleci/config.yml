@@ -35,7 +35,7 @@ workflows:
       - test
       - deploy:
           requires:
-            - run-test-suite
+            - test
           filters:
             branches:
               only: master
