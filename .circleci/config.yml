@@ -33,9 +33,9 @@ workflows:
   test-and-deploy:
     jobs:
       - test
-      - deploy-to-heroku
-        requires:
-          - test
-        filters:
-          branches:
-            only: master
+      - deploy-to-heroku:
+          requires:
+            - run-test-suite
+          filters:
+            branches:
+              only: master
