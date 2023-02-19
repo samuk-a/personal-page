@@ -7,7 +7,6 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "start": "node .output/server/index.mjs",
     "test": "jest --coverage false --passWithNoTests",
     "test_ci": "yarn test --ci",
     "postinstall": "nuxt prepare",

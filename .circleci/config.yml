@@ -1,7 +1,6 @@
 version: 2.1
 orbs:
   node: circleci/node@5.1.0
-  heroku: circleci/heroku@2.0.0
 jobs:
   test:
     executor:
@@ -25,6 +24,22 @@ jobs:
           paths:
             - .
 
+   build:
+    executor:
+      name: node/default
+      tag: '18.14'
+    working_directory: ~/project
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - run:
+          name: Build output
+          command: yarn generate
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - .output/public
+
   deploy:
     executor:
       name: node/default
@@ -33,16 +48,31 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/project
-      - heroku/deploy-via-git:
-          force: true
+      - run:
+          name: Deploy static files
+          command: |
+            sudo apt update
+            sudo apt -qq install git-ftp
+            git config user.name "${gitUser}"
+            git config user.email "${gitEmail}"
+            git add .output/public
+            git commit -m "Deploying public folder"
+            git ftp push --syncroot .output/public/ --user "${username}" --passwd "${password}" ${ftp_location}
 
 workflows:
-  test-and-deploy:
+  test-build-and-deploy:
     jobs:
       - test
+      - build:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
       - deploy:
           requires:
             - test
+            - build
           filters:
             branches:
               only: master
