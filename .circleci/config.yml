@@ -12,7 +12,7 @@ jobs:
       - checkout
       - run:
           name: Update yarn
-          command: sudo npm install -g yarn@latest
+          command: sudo npm install -g yarn@latest --force
       - node/install-packages:
           pkg-manager: yarn
           cache-path: ~/project/node_modules
