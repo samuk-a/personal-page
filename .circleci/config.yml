@@ -1,16 +1,22 @@
 version: 2.1
 orbs:
+  node: circleci/node@5.1.0
   heroku: circleci/heroku@2.0.0
 jobs:
   test:
-    docker:
-      - image: circleci/node:18.14.1
+    executor:
+      name: node/default
+      tag: '18.14'
     working_directory: ~/project
     steps:
       - checkout
       - run:
-          name: Fetch Dependencies
-          command: yarn install --no-progress --non-interactive --silent --pure-lockfile
+          name: Update yarn
+          command: sudo npm install -g yarn@latest
+      - node/install-packages:
+          pkg-manager: yarn
+          cache-path: ~/project/node_modules
+          override-ci-command: yarn install --no-progress --non-interactive --silent --pure-lockfile
       - run:
           name: Run test suite
           command: yarn test_ci
