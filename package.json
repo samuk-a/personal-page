@@ -34,10 +34,5 @@
     "*.js": "yarn lint",
     "*.ts": "yarn lint",
     "*.vue": "yarn lint"
-  },
-  "husky": {
-   "hooks": {
-      "pre-commit": "lint-staged"
-    }
   }
 }
