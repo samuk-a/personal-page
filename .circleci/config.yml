@@ -24,7 +24,7 @@ jobs:
           paths:
             - .
 
-   build:
+  build:
     executor:
       name: node/default
       tag: '18.14'
