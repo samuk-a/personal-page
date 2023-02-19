@@ -26,8 +26,9 @@ jobs:
             - .
 
   deploy:
-    docker:
-      - image: circleci/node:18.14.1
+    executor:
+      name: node/default
+      tag: '18.14'
     working_directory: ~/project
     steps:
       - attach_workspace:
