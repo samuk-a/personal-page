@@ -1,16 +1,16 @@
 <template>
-  <v-app-bar color="primary" dense>
+  <v-app-bar color="teal" dense>
     <v-app-bar-nav-icon
       variant="text"
+      class="hidden-md-and-up"
       @click.stop="drawer = !drawer"
     ></v-app-bar-nav-icon>
     <v-toolbar-title>Samuel Santiago</v-toolbar-title>
     <v-spacer></v-spacer>
-    <v-btn variant="text" icon="mdi-home" to="/" nuxt></v-btn>
-
-    <v-btn variant="text" icon="mdi-filter" to="/about" nuxt></v-btn>
-
-    <v-btn variant="text" icon="mdi-dots-vertical"></v-btn>
+    <div class="hidden-sm-and-down">
+      <v-btn variant="text" icon="mdi-home" to="/" nuxt></v-btn>
+      <v-btn variant="text" icon="mdi-information" to="/about" nuxt></v-btn>
+    </div>
   </v-app-bar>
   <v-navigation-drawer v-model="drawer" location="bottom" temporary>
     <v-list :items="items"></v-list>

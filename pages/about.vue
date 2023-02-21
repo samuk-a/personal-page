@@ -1,3 +1,6 @@
 <template>
-  <h1>About</h1>
+  <div>
+    <Head><Title>About</Title></Head>
+    <h1>About</h1>
+  </div>
 </template>
