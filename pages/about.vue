@@ -14,9 +14,26 @@
       >
         <v-card
           :title="$toTitleCase(repo.name.split('-').join(' '))"
-          :text="repo.description"
           class="mx-auto"
         >
+          <v-card-text>
+            <v-row>
+              <v-col cols="12" class="text-center">
+                <v-icon
+                  :icon="
+                    'mdi-language-' +
+                    (
+                      repo.language
+                        .replace('#', 'sharp')
+                        .replace('HTML', 'html5') || ''
+                    ).toLowerCase()
+                  "
+                  size="88"
+                ></v-icon>
+              </v-col>
+            </v-row>
+            <p>{{ repo.description }}</p>
+          </v-card-text>
           <v-card-actions>
             <v-btn :href="repo.url" target="_blank">GitHub</v-btn>
           </v-card-actions>
