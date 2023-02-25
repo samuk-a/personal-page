@@ -13,7 +13,22 @@
     </div>
   </v-app-bar>
   <v-navigation-drawer v-model="drawer" location="bottom" temporary>
-    <v-list :items="items"></v-list>
+    <v-list>
+      <v-list-item
+        v-for="item in items"
+        :key="item.title"
+        :to="item.value"
+        nuxt
+        link
+      >
+        <v-list-item-icon>
+          <v-icon>{{ item.icon }}</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title>{{ item.title }}</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+    </v-list>
   </v-navigation-drawer>
 </template>
 
@@ -24,20 +39,14 @@ export default {
     group: null,
     items: [
       {
-        title: 'Foo',
-        value: 'foo',
+        title: 'Home',
+        value: '/',
+        icon: 'mdi-home',
       },
       {
-        title: 'Bar',
-        value: 'bar',
-      },
-      {
-        title: 'Fizz',
-        value: 'fizz',
-      },
-      {
-        title: 'Buzz',
-        value: 'buzz',
+        title: 'About',
+        value: '/about',
+        icon: 'mdi-information',
       },
     ],
   }),
