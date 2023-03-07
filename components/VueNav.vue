@@ -8,8 +8,14 @@
     <v-toolbar-title>Samuel Santiago</v-toolbar-title>
     <v-spacer></v-spacer>
     <div class="hidden-sm-and-down">
-      <v-btn variant="text" icon="mdi-home" to="/" nuxt></v-btn>
-      <v-btn variant="text" icon="mdi-information" to="/about" nuxt></v-btn>
+      <v-btn
+        v-for="item in items"
+        :key="item.title"
+        variant="text"
+        :icon="item.icon"
+        :to="item.value"
+        nuxt
+      ></v-btn>
     </div>
   </v-app-bar>
   <v-navigation-drawer v-model="drawer" location="bottom" temporary>
@@ -47,6 +53,11 @@ export default {
         title: 'About',
         value: '/about',
         icon: 'mdi-information',
+      },
+      {
+        title: 'Contact',
+        value: '/contact',
+        icon: 'mdi-email',
       },
     ],
   }),
