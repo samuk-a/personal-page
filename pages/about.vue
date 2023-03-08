@@ -2,7 +2,7 @@
   <div>
     <Head><Title>About</Title></Head>
     <h1 v-if="pending">Loading Infos...</h1>
-    <h1 v-else>About</h1>
+    <h1 v-else>Sobre</h1>
     <v-row>
       <v-col
         v-for="repo in repos.repositories"
@@ -24,7 +24,7 @@
                     'mdi-language-' +
                     (
                       repo.language
-                        .replace('#', 'sharp')
+                        ?.replace('#', 'sharp')
                         .replace('HTML', 'html5') || ''
                     ).toLowerCase()
                   "
