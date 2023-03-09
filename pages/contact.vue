@@ -44,11 +44,16 @@
         </v-row>
       </v-col>
       <v-col>
-        <div v-if="success">
-          <v-alert type="success" dismissible>
+        <v-row v-if="success">
+          <v-alert type="success" closable>
             Mensagem enviada com sucesso!
           </v-alert>
-        </div>
+        </v-row>
+        <v-row v-else>
+          <v-alert type="info" closable>
+            Preencha o formulário abaixo para entrar em contato comigo
+          </v-alert>
+        </v-row>
         <v-form @submit.prevent="sendEmail">
           <v-row no-gutters>
             <v-col cols="12">
@@ -153,6 +158,10 @@ export default {
       )
       this.loading = false
       if (response.status === 200) {
+        this.name = null
+        this.email = null
+        this.subject = null
+        this.message = null
         this.success = true
       }
     },
