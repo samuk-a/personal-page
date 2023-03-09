@@ -54,49 +54,51 @@
             Preencha o formulário abaixo para entrar em contato comigo
           </v-alert>
         </v-row>
-        <v-form @submit.prevent="sendEmail">
-          <v-row no-gutters>
-            <v-col cols="12">
-              <v-text-field
-                v-model="name"
-                label="Nome"
-                :rules="nameRule"
-                required
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12">
-              <v-text-field
-                v-model="email"
-                label="Email"
-                :rules="emailRule"
-                required
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12">
-              <v-select
-                v-model="subject"
-                label="Assunto Principal"
-                :items="items"
-                item-title="subject"
-                item-value="value"
-                required
-                :rules="subjectRule"
-              ></v-select>
-            </v-col>
-            <v-col cols="12">
-              <v-textarea
-                v-model="message"
-                label="Mensagem"
-                :rules="messageRule"
-                required
-              ></v-textarea>
-            </v-col>
-            <v-col cols="12">
-              <v-btn v-if="!loading" type="submit" color="teal">Enviar</v-btn>
-              <v-btn v-else type="" disabled color="teal">Enviando...</v-btn>
-            </v-col>
-          </v-row>
-        </v-form>
+        <v-row>
+          <v-form @submit.prevent="sendEmail">
+            <v-row no-gutters>
+              <v-col cols="12">
+                <v-text-field
+                  v-model="name"
+                  label="Nome"
+                  :rules="nameRule"
+                  required
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field
+                  v-model="email"
+                  label="Email"
+                  :rules="emailRule"
+                  required
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-select
+                  v-model="subject"
+                  label="Assunto Principal"
+                  :items="items"
+                  item-title="subject"
+                  item-value="value"
+                  required
+                  :rules="subjectRule"
+                ></v-select>
+              </v-col>
+              <v-col cols="12">
+                <v-textarea
+                  v-model="message"
+                  label="Mensagem"
+                  :rules="messageRule"
+                  required
+                ></v-textarea>
+              </v-col>
+              <v-col cols="12">
+                <v-btn v-if="!loading" type="submit" color="teal">Enviar</v-btn>
+                <v-btn v-else type="" disabled color="teal">Enviando...</v-btn>
+              </v-col>
+            </v-row>
+          </v-form>
+        </v-row>
       </v-col>
     </v-row>
   </div>
