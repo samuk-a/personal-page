@@ -44,17 +44,17 @@
         </v-row>
       </v-col>
       <v-col>
-        <v-row v-if="success">
+        <div v-if="success">
           <v-alert type="success" closable>
             Mensagem enviada com sucesso!
           </v-alert>
-        </v-row>
-        <v-row v-else>
+        </div>
+        <div v-else>
           <v-alert type="info" closable>
             Preencha o formulário abaixo para entrar em contato comigo
           </v-alert>
-        </v-row>
-        <v-row>
+        </div>
+        <div>
           <v-form @submit.prevent="sendEmail">
             <v-row no-gutters>
               <v-col cols="12">
@@ -98,7 +98,7 @@
               </v-col>
             </v-row>
           </v-form>
-        </v-row>
+        </div>
       </v-col>
     </v-row>
   </div>
