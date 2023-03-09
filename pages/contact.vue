@@ -145,6 +145,8 @@ export default {
   }),
   methods: {
     async sendEmail() {
+      if (this.loading) return
+      if (!this.name || !this.email || !this.subject || !this.message) return
       this.loading = true
       const response: any = await $fetch(
         'https://mail-send.herokuapp.com/mail/send',
