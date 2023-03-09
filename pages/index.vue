@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Head><Title>Home</Title></Head>
+    <Head><Title>Início</Title></Head>
     <v-row align="center">
       <v-col cols="12" sm="8" md="7" :order="order">
         <v-row no-gutters>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Head><Title>About</Title></Head>
+    <Head><Title>Sobre</Title></Head>
     <h1 v-if="pending">Loading Infos...</h1>
     <h1 v-else>Sobre</h1>
     <v-row>

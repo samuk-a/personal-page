@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Head><Title>Contact</Title></Head>
+    <Head><Title>Contato</Title></Head>
     <h1>Contato</h1>
     <v-row>
       <v-col cols="12" sm="6" md="4" lg="3">
@@ -13,7 +13,7 @@
                     <v-icon icon="mdi-linkedin" size="88"></v-icon>
                   </v-col>
                 </v-row>
-                <p>Connect with me on LinkedIn</p>
+                <p>Conecte-se comigo no LinkedIn</p>
               </v-card-text>
               <v-card-actions>
                 <v-btn
@@ -32,7 +32,7 @@
                     <v-icon icon="mdi-github" size="88"></v-icon>
                   </v-col>
                 </v-row>
-                <p>Check out my GitHub</p>
+                <p>Dê uma olhada no meu GitHub</p>
               </v-card-text>
               <v-card-actions>
                 <v-btn href="https://www.github.com/samuk-a" target="_blank"
@@ -44,7 +44,12 @@
         </v-row>
       </v-col>
       <v-col>
-        <v-form @submit.prevent>
+        <div v-if="success">
+          <v-alert type="success" dismissible>
+            Mensagem enviada com sucesso!
+          </v-alert>
+        </div>
+        <v-form @submit.prevent="sendEmail">
           <v-row no-gutters>
             <v-col cols="12">
               <v-text-field
@@ -82,7 +87,8 @@
               ></v-textarea>
             </v-col>
             <v-col cols="12">
-              <v-btn type="submit" color="teal">Enviar</v-btn>
+              <v-btn v-if="!loading" type="submit" color="teal">Enviar</v-btn>
+              <v-btn v-else type="" disabled color="teal">Enviando...</v-btn>
             </v-col>
           </v-row>
         </v-form>
@@ -97,6 +103,8 @@ export default {
     email: null,
     subject: null,
     message: null,
+    loading: false,
+    success: false,
     items: [
       { subject: 'Proposta', value: 'Proposta' },
       { subject: 'Requisição de Serviços', value: 'Requisição de Serviços' },
@@ -111,7 +119,7 @@ export default {
     ],
     emailRule: [
       (value: string) => {
-        if (/^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(value)) return true
+        if (/^\w+@[a-z.-]+\.[a-z]+$/i.test(value)) return true
         return 'Você deve digitar um email'
       },
     ],
@@ -128,5 +136,26 @@ export default {
       },
     ],
   }),
+  methods: {
+    async sendEmail() {
+      this.loading = true
+      const response: any = await $fetch(
+        'https://mail-send.herokuapp.com/mail/send',
+        {
+          method: 'POST',
+          body: {
+            from: this.name,
+            to: 'contato@samuelsantiago.dev.br',
+            subject: `[${this.subject}] - ${this.name}`,
+            message: `<b>${this.email}</b><br>${this.message}`,
+          },
+        }
+      )
+      this.loading = false
+      if (response.status === 200) {
+        this.success = true
+      }
+    },
+  },
 }
 </script>
