@@ -1,7 +1,14 @@
 <template>
   <div>
     <Head><Title>Projetos</Title></Head>
-    <h1 v-if="pending" align="center" class="text-h2">Loading Infos...</h1>
+    <div v-if="pending">
+      <h1 align="center" class="text-h2">Carregando...</h1>
+      <v-progress-linear
+        color="teal-lighten-2"
+        indeterminate
+        :height="5"
+      ></v-progress-linear>
+    </div>
     <h1 v-else align="center" class="mb-5 text-h2">Projetos</h1>
     <v-row v-if="!pending" class="text-body-2">
       <v-col

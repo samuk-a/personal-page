@@ -44,18 +44,8 @@
         </v-row>
       </v-col>
       <v-col>
-        <div v-if="success">
-          <v-alert type="success" closable>
-            Mensagem enviada com sucesso!
-          </v-alert>
-        </div>
-        <div v-else>
-          <v-alert type="info" closable>
-            Preencha o formulário abaixo para entrar em contato comigo
-          </v-alert>
-        </div>
         <div>
-          <v-form @submit.prevent="sendEmail">
+          <v-form v-model="isFormValid" @submit.prevent="sendEmail">
             <v-row no-gutters>
               <v-col cols="12">
                 <v-text-field
@@ -93,14 +83,65 @@
                 ></v-textarea>
               </v-col>
               <v-col cols="12">
-                <v-btn v-if="!loading" type="submit" color="teal">Enviar</v-btn>
-                <v-btn v-else type="" disabled color="teal">Enviando...</v-btn>
+                <div class="hidden-md-and-up">
+                  <v-btn
+                    v-if="!loading"
+                    type="submit"
+                    color="teal"
+                    block
+                    prepend-icon="mdi-send"
+                    >Enviar</v-btn
+                  >
+                  <v-btn
+                    v-else
+                    type=""
+                    disabled
+                    color="teal"
+                    block
+                    prepend-icon="mdi-send"
+                    >Enviando...</v-btn
+                  >
+                </div>
+                <div class="hidden-sm-and-down" align="right">
+                  <v-btn
+                    v-if="!loading"
+                    type="submit"
+                    color="teal"
+                    prepend-icon="mdi-send"
+                    >Enviar</v-btn
+                  >
+                  <v-btn
+                    v-else
+                    type=""
+                    disabled
+                    color="teal"
+                    prepend-icon="mdi-send"
+                    >Enviando...</v-btn
+                  >
+                </div>
               </v-col>
             </v-row>
           </v-form>
         </div>
       </v-col>
     </v-row>
+    <v-snackbar
+      v-model="success"
+      :timeout="2000"
+      color="success"
+      location="top right"
+    >
+      Mensagem enviada com sucesso!
+    </v-snackbar>
+    <v-snackbar
+      v-model="error"
+      :timeout="2000"
+      color="error"
+      location="top right"
+    >
+      Ocorreu um erro!<br />
+      Verifique os campos e tente novamente!
+    </v-snackbar>
   </div>
 </template>
 <script lang="ts">
@@ -110,8 +151,10 @@ export default {
     email: null,
     subject: null,
     message: null,
+    isFormValid: false,
     loading: false,
     success: false,
+    error: false,
     items: [
       { subject: 'Proposta', value: 'Proposta' },
       { subject: 'Requisição de Serviços', value: 'Requisição de Serviços' },
@@ -146,7 +189,10 @@ export default {
   methods: {
     async sendEmail() {
       if (this.loading) return
-      if (!this.name || !this.email || !this.subject || !this.message) return
+      if (!this.isFormValid) {
+        this.error = true
+        return
+      }
       this.loading = true
       const response: any = await $fetch(
         'https://mail-send.herokuapp.com/mail/send',
@@ -166,6 +212,7 @@ export default {
         this.email = null
         this.subject = null
         this.message = null
+        this.error = false
         this.success = true
       }
     },
