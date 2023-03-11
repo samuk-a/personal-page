@@ -70,7 +70,7 @@ export default {
         {
           prependAvatar: '/certs/udemy.jpg',
           title: 'Curso NoSQL e MongoDB',
-          subtitle: `Curso de NoSQL e MongoDB para Devs, ministrado por Júlio Alcântara<br><a href="https://www.udemy.com/certificate/UC-8e2b0b0f-1b5f-4b5f-8f3f-2b2b2b2b2b2b/" target="_blank">Udemy</a>`,
+          subtitle: `Curso de NoSQL e MongoDB para Devs, ministrado por Júlio Alcântara<br><a href="https://www.udemy.com/certificate/UC-ad307164-22ad-4dff-8669-857fe8d738c0/" target="_blank">Udemy</a>`,
         },
         {
           prependAvatar: '/certs/alura.jpg',
