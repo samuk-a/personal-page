@@ -7,7 +7,7 @@
       Back-end | Python | Node | MongoDB | MySQL | Docker | Cloud
     </p>
     <v-row justify="start">
-      <v-col cols="8" offset="2">
+      <v-col cols="12" md="8" offset-md="2">
         <h4 class="text-h6">Sobre mim</h4>
         <p>
           Formando em Tecnologia da Informação pela UNIVESP, atuando como
@@ -26,7 +26,7 @@
       </v-col>
     </v-row>
     <v-row class="mt-5" justify="start">
-      <v-col cols="4" offset="2">
+      <v-col cols="12" sm="6" md="4" offset-md="2">
         <h4 class="text-h6">Experiências</h4>
         <v-list lines="two">
           <v-list-item
@@ -38,7 +38,7 @@
           ></v-list-item>
         </v-list>
       </v-col>
-      <v-col cols="4">
+      <v-col cols="12" sm="6" md="4">
         <h4 class="text-h6">Certificações</h4>
         <v-list :items="certs" item-props lines="three">
           <template #subtitle="{ subtitle }">
@@ -70,7 +70,7 @@ export default {
         {
           prependAvatar: '/certs/udemy.jpg',
           title: 'Curso NoSQL e MongoDB',
-          subtitle: `Curso de NoSQL e MongoDB para Devs, ministrado por Júlio Alcântara<br><a href="https://www.udemy.com/certificate/UC-ad307164-22ad-4dff-8669-857fe8d738c0/" target="_blank">Udemy</a>`,
+          subtitle: `Curso ministrado por Júlio Alcântara<br><a href="https://www.udemy.com/certificate/UC-ad307164-22ad-4dff-8669-857fe8d738c0/" target="_blank">Udemy</a>`,
         },
         {
           prependAvatar: '/certs/alura.jpg',
