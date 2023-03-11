@@ -1,10 +1,10 @@
 <template>
-  <v-app-bar color="teal" dense>
+  <v-app-bar color="teal" dense class="hidden-sm-and-down">
     <v-toolbar-title style="cursor: pointer" @click="$router.push('/')">
       Samuel Santiago
     </v-toolbar-title>
     <v-spacer></v-spacer>
-    <div class="hidden-sm-and-down">
+    <div>
       <v-btn
         v-for="item in items"
         :key="item.title"
@@ -15,7 +15,7 @@
       ></v-btn>
     </div>
   </v-app-bar>
-  <v-bottom-navigation grow class="hidden-md-and-up">
+  <v-bottom-navigation class="hidden-md-and-up" color="teal">
     <v-btn
       v-for="item in items"
       :key="item.title"
