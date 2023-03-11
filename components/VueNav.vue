@@ -5,7 +5,9 @@
       class="hidden-md-and-up"
       @click.stop="drawer = !drawer"
     ></v-app-bar-nav-icon>
-    <v-toolbar-title>Samuel Santiago</v-toolbar-title>
+    <v-toolbar-title style="cursor: pointer" @click="$router.push('/')"
+      >Samuel Santiago</v-toolbar-title
+    >
     <v-spacer></v-spacer>
     <div class="hidden-sm-and-down">
       <v-btn
@@ -45,17 +47,22 @@ export default {
     group: null,
     items: [
       {
-        title: 'Home',
+        title: 'Início',
         value: '/',
         icon: 'mdi-home',
       },
       {
-        title: 'About',
+        title: 'Sobre',
         value: '/about',
         icon: 'mdi-information',
       },
       {
-        title: 'Contact',
+        title: 'Projetos',
+        value: '/projects',
+        icon: 'mdi-folder',
+      },
+      {
+        title: 'Contato',
         value: '/contact',
         icon: 'mdi-email',
       },

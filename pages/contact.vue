@@ -1,7 +1,7 @@
 <template>
   <div>
     <Head><Title>Contato</Title></Head>
-    <h1>Contato</h1>
+    <h1 align="center" class="text-h2 mb-5">Contato</h1>
     <v-row>
       <v-col cols="12" sm="6" md="4" lg="3">
         <v-row>

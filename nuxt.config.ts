@@ -18,4 +18,5 @@ export default defineNuxtConfig({
     },
     pageTransition: true,
   },
+  ssr: false,
 })
