@@ -20,8 +20,9 @@
           e estaduais, na automatização de consultas.<br />
         </p>
         <p>
-          Me formei em 2016 no curso técnico em informática pela ETEC, e desde
-          então venho me aprimorando na área de desenvolvimento de software.
+          Me formei em 2016 no curso técnico em informática pelo Centro Paula
+          Souza, e desde então venho me aprimorando na área de desenvolvimento
+          de software.
         </p>
       </v-col>
     </v-row>
