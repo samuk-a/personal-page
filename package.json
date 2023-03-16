@@ -30,7 +30,7 @@
   "dependencies": {
     "@mdi/font": "^7.1.96",
     "sass": "^1.58.3",
-    "vuetify": "^3.1.8"
+    "vuetify": "^3.1.10"
   },
   "lint-staged": {
     "*.js": "yarn lint",
