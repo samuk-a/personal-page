@@ -38,8 +38,7 @@ jobs:
             sudo apt update
             sudo apt -qq install git-ftp
             git init
-            git ftp init
-            git config init.defaultBranch main
+            git ftp init --user "${username}" --passwd "${password}" ${ftp_location}
             git config user.name "${gitUser}"
             git config user.email "${gitEmail}"
             git add .output/public
