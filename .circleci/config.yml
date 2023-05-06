@@ -21,9 +21,6 @@ jobs:
       - run:
           name: Deploy static files
           command: |
-            echo "USERNAME: ${username}"
-            echo "PASSWORD: ${password}"
-            echo "FTP LOCATION: ${ftp_location}"
             sudo apt update
             sudo apt -qq install git-ftp
             git init
@@ -32,7 +29,7 @@ jobs:
             git config user.email "${gitEmail}"
             git add .output/public
             git commit -m "Deploying public folder"
-            git ftp push --force --syncroot .output/public/ --user "${username}" --passwd "${password}" ${ftp_location}
+            git ftp push --user "${username}" --passwd "${password}" ${ftp_location}
 
 workflows:
   build-deploy:
