@@ -21,6 +21,9 @@ jobs:
       - run:
           name: Deploy static files
           command: |
+            echo "USERNAME: ${username}"
+            echo "PASSWORD: ${password}"
+            echo "FTP LOCATION: ${ftp_location}"
             sudo apt update
             sudo apt -qq install git-ftp
             git init
