@@ -14,24 +14,10 @@ jobs:
           command: sudo npm install -g yarn@latest --force
       - node/install-packages:
           pkg-manager: yarn
-          cache-path: ~/project/node_modules
           override-ci-command: yarn install --no-progress --non-interactive --silent --pure-lockfile
       - run:
           name: Build output
           command: yarn generate
-      - persist_to_workspace:
-          root: ~/project
-          paths:
-            - .output/public
-
-  deploy:
-    executor:
-      name: node/default
-      tag: '18.14'
-    working_directory: ~/project
-    steps:
-      - attach_workspace:
-          at: ~/project
       - run:
           name: Deploy static files
           command: |
@@ -52,10 +38,4 @@ workflows:
           filters:
             branches:
               only: master
-      - deploy:
-          requires:
-            - build
           context: Hostinger Deploy
-          filters:
-            branches:
-              only: master
