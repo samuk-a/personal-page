@@ -37,11 +37,11 @@ jobs:
           command: |
             sudo apt update
             sudo apt -qq install git-ftp
+            git init
+            git ftp init
             git config init.defaultBranch main
             git config user.name "${gitUser}"
             git config user.email "${gitEmail}"
-            git init
-            git ftp init
             git add .output/public
             git commit -m "Deploying public folder"
             git ftp push --force --syncroot .output/public/ --user "${username}" --passwd "${password}" ${ftp_location}
