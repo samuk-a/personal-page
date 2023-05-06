@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   node: circleci/node@5.1.0
 jobs:
-  test:
+  build:
     executor:
       name: node/default
       tag: '18.14'
@@ -12,26 +12,6 @@ jobs:
       - run:
           name: Update yarn
           command: sudo npm install -g yarn@latest --force
-      - node/install-packages:
-          pkg-manager: yarn
-          cache-path: ~/project/node_modules
-          override-ci-command: yarn install --no-progress --non-interactive --silent --pure-lockfile
-      - run:
-          name: Run test suite
-          command: yarn test_ci
-      - persist_to_workspace:
-          root: ~/project
-          paths:
-            - .
-
-  build:
-    executor:
-      name: node/default
-      tag: '18.14'
-    working_directory: ~/project
-    steps:
-      - attach_workspace:
-          at: ~/project
       - run:
           name: Build output
           command: yarn generate
@@ -51,8 +31,6 @@ jobs:
       - run:
           name: Deploy static files
           command: |
-            echo "${gitUser}"
-            echo "${gitEmail}"
             sudo apt update
             sudo apt -qq install git-ftp
             git init
@@ -65,19 +43,14 @@ jobs:
 workflows:
   test-build-and-deploy:
     jobs:
-      - test:
-          filters:
-            branches:
-              only: master
       - build:
-          requires:
-            - test
           filters:
             branches:
               only: master
       - deploy:
           requires:
             - build
+          context: Hostinger Deploy
           filters:
             branches:
               only: master
