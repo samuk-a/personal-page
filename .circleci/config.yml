@@ -51,8 +51,11 @@ jobs:
       - run:
           name: Deploy static files
           command: |
+            echo "${gitUser}"
+            echo "${gitEmail}"
             sudo apt update
             sudo apt -qq install git-ftp
+            git init
             git config user.name "${gitUser}"
             git config user.email "${gitEmail}"
             git add .output/public
