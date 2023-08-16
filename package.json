@@ -31,7 +31,7 @@
     "@mdi/font": "^7.2.96",
     "sass": "^1.64.1",
     "sass": "^1.62.1",
-    "vuetify": "^3.3.10"
+    "vuetify": "^3.3.13"
   },
   "lint-staged": {
     "*.js": "yarn lint",
